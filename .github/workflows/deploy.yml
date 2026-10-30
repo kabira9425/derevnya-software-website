@@ -1,4 +1,5 @@
-name: Deploy Derevnya IT Solutions Portal to GitHub Pages
+
+name: Deploy Website
 
 on:
   push:
@@ -12,32 +13,31 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
-  cancel-in-progress: false
+  group: pages
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
       - name: Install dependencies
         run: npm install
 
-      - name: Build static production bundle
-        env:
-          # './' works automatically for both username.github.io and username.github.io/repo-name/
-          VITE_BASE_PATH: ./
+      - name: Build website
         run: npm run build
+        env:
+          VITE_BASE_PATH: /derevnya-software-website/
 
-      - name: Upload Pages artifact
+      - name: Upload website
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
@@ -49,6 +49,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: Deploy to GitHub Pages
+      - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
