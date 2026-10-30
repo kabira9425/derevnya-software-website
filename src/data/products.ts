@@ -1,20 +1,21 @@
-/**
- * CENTRALIZED PRODUCT & DIRECT DOWNLOAD CONFIGURATION
- * ---------------------------------------------------------------------------
- * Owner Guide:
- * 1. To activate a real Windows (.exe) or Android (.apk) download button for
- *    VyaparDesk, paste the direct file URL into `downloadUrl` under `downloads`.
- *    - Leave `downloadUrl: ""` until your real installer file is hosted (e.g., on
- *      GitHub Releases or in `/public/downloads/`). When empty, the UI automatically
- *      and honestly displays "Download Coming Soon" instead of a broken/fake link.
- * 2. To add screenshots, place `.png`/`.jpg` files in `/public/screenshots/` and
- *    set `imageUrl: "./screenshots/your-screen.png"` in the `screenshots` array.
- * 3. To add a demo video, set `demoVideoEmbedUrl` (e.g., YouTube embed URL) or
- *    `demoVideoFileUrl` (direct `.mp4` path).
- * 4. To add a new software product in the future, append a new `SoftwareProduct`
- *    object to the `PRODUCTS` array below—all catalog, product detail, download,
- *    system requirement, and changelog pages update automatically!
- */
+// ============================================================================
+// EASY DOWNLOAD CONFIGURATION (SABSE UPAR YAHAN APNA LINK AUR SIZE BADLEIN)
+// ============================================================================
+
+// 1. WINDOWS (.EXE) DETAILS — Jab Windows .exe upload karein toh quotes '' ke beech link paste karein:
+const WINDOWS_EXE_DOWNLOAD_URL = '';
+const WINDOWS_EXE_VERSION = '1.0.0';
+const WINDOWS_EXE_FILE_SIZE = 'Pending Installer Upload';
+const WINDOWS_EXE_RELEASE_DATE = 'Pending Official Build Upload';
+
+// 2. ANDROID (.APK) DETAILS — Aapka live GitHub Release APK link set kar diya gaya hai:
+const ANDROID_APK_DOWNLOAD_URL =
+  'https://github.com/kabira9425/derevnya-software-website/releases/download/v1.0.0/VyaparDesk-Mobile-Offline-1.0.0.2.apk';
+const ANDROID_APK_VERSION = '1.0.0.2';
+const ANDROID_APK_FILE_SIZE = '10.4 MB';
+const ANDROID_APK_RELEASE_DATE = '30 Oct 2026';
+
+// ============================================================================
 
 export type PlatformKey = 'windows' | 'android';
 
@@ -29,15 +30,7 @@ export interface PlatformDownload {
   version: string;
   releaseDate: string;
   fileSize: string;
-  /**
-   * Direct URL to the real installer binary.
-   * Keep as "" when no binary is uploaded yet — UI will show "Download Coming Soon".
-   * Example when ready:
-   * "https://github.com/your-username/your-repo/releases/download/v1.0.0/VyaparDesk-Setup-1.0.0.exe"
-   * or "./downloads/VyaparDesk-Setup-1.0.0.exe"
-   */
   downloadUrl: string;
-  /** Optional SHA-256 checksum string once binary is built */
   sha256Checksum?: string;
   installSteps: string[];
 }
@@ -56,10 +49,6 @@ export interface ProductScreenshot {
   title: string;
   category: 'Billing & POS' | 'Inventory Control' | 'Reports & Ledger' | 'Mobile View';
   caption: string;
-  /**
-   * Set to your real screenshot path (e.g. "./screenshots/billing-counter.png") when available.
-   * When "", the gallery renders an interactive UI layout preview clearly marked as a preview placeholder.
-   */
   imageUrl: string;
   previewType: 'pos-billing' | 'inventory-grid' | 'sales-reports' | 'party-ledger' | 'barcode-labels' | 'mobile-stock';
 }
@@ -110,7 +99,6 @@ export interface SoftwareProduct {
   releaseStatusLabel: string;
   licenseType: '100% Free Download';
   supportedPlatformsSummary: string;
-  /** Optional YouTube/Vimeo embed URL or direct MP4 URL. Leave "" to show the honest Demo Video Placeholder. */
   demoVideoEmbedUrl: string;
   demoVideoFileUrl: string;
   demoVideoDurationEstimate: string;
@@ -141,10 +129,9 @@ export const PRODUCTS: SoftwareProduct[] = [
       'Offline-ready local database design for uninterrupted billing during internet outages',
     ],
     currentVersion: '1.0.0',
-    releaseStatusLabel: 'v1.0.0 · Installer Upload Pending',
+    releaseStatusLabel: 'v1.0.0 · Android APK Available',
     licenseType: '100% Free Download',
     supportedPlatformsSummary: 'Windows 10/11 (64-bit) · Android 9.0+',
-    // Paste your official YouTube embed URL (e.g. "https://www.youtube.com/embed/XXXX") or MP4 file URL when recorded:
     demoVideoEmbedUrl: '',
     demoVideoFileUrl: '',
     demoVideoDurationEstimate: '4-part guided workflow preview available below',
@@ -157,11 +144,10 @@ export const PRODUCTS: SoftwareProduct[] = [
         fileExtension: '.exe',
         architecture: '64-bit (x64)',
         supportedOs: 'Windows 10 (1903+) & Windows 11',
-        version: '1.0.0',
-        releaseDate: 'Pending Official Build Upload',
-        fileSize: 'Pending Installer Upload',
-        // OWNER: Paste your real Windows .exe URL below when ready (keep "" until real file exists):
-        downloadUrl: '',
+        version: WINDOWS_EXE_VERSION,
+        releaseDate: WINDOWS_EXE_RELEASE_DATE,
+        fileSize: WINDOWS_EXE_FILE_SIZE,
+        downloadUrl: WINDOWS_EXE_DOWNLOAD_URL,
         sha256Checksum: '',
         installSteps: [
           'Download the official VyaparDesk Windows Installer (.exe) once published on this portal.',
@@ -173,21 +159,18 @@ export const PRODUCTS: SoftwareProduct[] = [
       {
         id: 'vyapardesk-android-apk',
         platform: 'android',
-        platformLabel: 'version: '1.0.0.2',
-releaseDate: '30 Oct 2026',
-fileSize: '10.4 MB',
-downloadUrl: 'https://github.com/kabira9425/derevnya-software-website/releases/download/v1.0.0/VyaparDesk-Mobile-Offline-1.0.0.2.apk',,
+        platformLabel: 'Android Mobile Edition',
+        fileType: 'Android Application Package (.apk)',
         fileExtension: '.apk',
         architecture: 'ARM64 / Universal APK',
         supportedOs: 'Android 9.0 (Pie) to Android 15',
-        version: '1.0.0',
-        releaseDate: 'Pending Official Build Upload',
-        fileSize: 'Pending APK Upload',
-        // OWNER: Paste your real Android .apk URL below when ready (keep "" until real file exists):
-        downloadUrl: '',
+        version: ANDROID_APK_VERSION,
+        releaseDate: ANDROID_APK_RELEASE_DATE,
+        fileSize: ANDROID_APK_FILE_SIZE,
+        downloadUrl: ANDROID_APK_DOWNLOAD_URL,
         sha256Checksum: '',
         installSteps: [
-          'Download the official VyaparDesk .apk package directly to your Android smartphone or tablet once released.',
+          'Download the official VyaparDesk .apk package directly to your Android smartphone or tablet.',
           'Open the downloaded .apk file from your browser Downloads or File Manager.',
           'If prompted by Android security settings, allow installation from your browser for this official package.',
           'Open VyaparDesk, configure your store name and currency/tax preferences, and begin managing inventory immediately.',
@@ -280,7 +263,7 @@ downloadUrl: 'https://github.com/kabira9425/derevnya-software-website/releases/d
         title: 'POS Counter Billing Workspace',
         category: 'Billing & POS',
         caption:
-          'UI PreviewPlaceholder — Keyboard-driven billing grid with barcode scan input, tax summary, and instant receipt preview. Replaceable via imageUrl in src/data/products.ts.',
+          'UI Preview Placeholder — Keyboard-driven billing grid with barcode scan input, tax summary, and instant receipt preview. Replaceable via imageUrl in src/data/products.ts.',
         imageUrl: '',
         previewType: 'pos-billing',
       },
@@ -404,10 +387,10 @@ downloadUrl: 'https://github.com/kabira9425/derevnya-software-website/releases/d
     changelog: [
       {
         version: '1.0.0',
-        releaseDate: 'Upcoming Public Build (Installer Upload Pending)',
-        status: 'Upcoming Initial Release',
+        releaseDate: '30 Oct 2026',
+        status: 'Stable Release',
         summary:
-          'Foundational architecture of VyaparDesk Retail Billing & Inventory for Windows Desktop (.exe) and Android (.apk), engineered by Derevnya IT Solutions.',
+          'First official release of VyaparDesk Retail Billing & Inventory Management Software by Derevnya IT Solutions.',
         changes: [
           {
             type: 'Feature',
@@ -427,7 +410,7 @@ downloadUrl: 'https://github.com/kabira9425/derevnya-software-website/releases/d
           {
             type: 'Platform',
             description:
-              'Prepared direct standalone distribution structure for Windows 10/11 (.exe) and Android 9+ (.apk) with zero payment or login requirements.',
+              'Published official offline Android Mobile Edition package (VyaparDesk-Mobile-Offline-1.0.0.2.apk · 10.4 MB) for direct free download.',
           },
         ],
       },
@@ -494,10 +477,6 @@ export const FAQ_ITEMS: FaqItem[] = [
   },
 ];
 
-/**
- * Helper that strictly checks whether a real, non-empty download URL has been configured.
- * Prevents fake "#" or placeholder links from ever being treated as active downloads.
- */
 export function isDownloadAvailable(download: PlatformDownload): boolean {
   const url = download.downloadUrl.trim();
   if (!url || url === '#' || url.toLowerCase().includes('placeholder')) {
