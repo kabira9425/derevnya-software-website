@@ -8,8 +8,7 @@ export default defineConfig(({mode}) => {
   // Configurable base path for GitHub Pages deployment.
   // Defaults to './' so static builds work automatically on both root domains and GitHub Pages project subfolders.
   // Override via VITE_BASE_PATH="/your-repo-name/" if desired.
-  const basePath = env.VITE_BASE_PATH || './';
-
+   const basePath = env.VITE_BASE_PATH || '/derevnya-software-website/';
   return {
     base: basePath,
     plugins: [react(), tailwindcss()],
