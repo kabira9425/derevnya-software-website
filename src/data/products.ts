@@ -173,7 +173,10 @@ export const PRODUCTS: SoftwareProduct[] = [
       {
         id: 'vyapardesk-android-apk',
         platform: 'android',
-        platformLabel: 'Android Mobile Edition',
+        platformLabel: 'version: '1.0.0.2',
+        releaseDate: '30 Oct 2026',
+        fileSize: '10.4 MB',
+        downloadUrl: 'https://github.com/kabira9425/derevnya-software-website/releases/download/v1.0.0/VyaparDesk-Mobile-Offline-1.0.0.2.apk',',
         fileType: 'Android Application Package (.apk)',
         fileExtension: '.apk',
         architecture: 'ARM64 / Universal APK',
