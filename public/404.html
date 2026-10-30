@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting – Derevnya IT Solutions</title>
+    <script>
+      // GitHub Pages static fallback: redirects stray deep URLs cleanly to HashRouter root
+      (function () {
+        var pathSegments = window.location.pathname.split('/').filter(Boolean);
+        var repoBase = window.location.hostname.endsWith('github.io') && pathSegments.length > 0
+          ? '/' + pathSegments[0] + '/'
+          : '/';
+        window.location.replace(window.location.origin + repoBase + '#/');
+      })();
+    </script>
+  </head>
+  <body>
+    <p>Redirecting to Derevnya IT Solutions portal...</p>
+  </body>
+</html>

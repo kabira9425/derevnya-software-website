@@ -1,0 +1,6 @@
+{
+  "name": "Derevnya IT Solutions – Free Business Software Portal",
+  "description": "Official free software download portal by Derevnya IT Solutions. Explore and download VyaparDesk Retail Billing & Inventory software for modern businesses.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
